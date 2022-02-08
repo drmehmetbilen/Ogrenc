@@ -27,18 +27,18 @@ namespace Ogrenc.API.Controllers
             {
                 return Ok(result);
             }
-            
-                return NotFound();
-            
-            
-            
+
+            return NotFound();
+
+
+
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var result = service.getOgrenciById(id);
-            if (result!=null)
+            if (result != null)
             {
                 return Ok(result);
 
@@ -49,9 +49,16 @@ namespace Ogrenc.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Ogrenci ogrenci)
         {
-           var result  = service.addOgrenci(ogrenci);
+            var result = service.addOgrenci(ogrenci);
 
-            return CreatedAtAction("Get",new {id=result.IdOgrenci},result);
+            return CreatedAtAction("Get", new { id = result.IdOgrenci }, result);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            return NoContent();
+
         }
 
     }
