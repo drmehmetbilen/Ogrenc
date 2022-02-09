@@ -15,9 +15,11 @@ namespace Ogrenc.Entities
         [StringLength(100)]
         public string Ad { get; set; }
         public string Kod { get; set; }
-
         public virtual List<DonemDersleri>? DonemDersleris { get; set; }
-        
+
+        [ForeignKey("BolumId")]
+        public Bolum IdBolum { get; set; }
+
     }
 
 }

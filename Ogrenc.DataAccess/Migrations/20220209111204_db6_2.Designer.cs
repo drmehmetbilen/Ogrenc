@@ -12,17 +12,35 @@ using Ogrenc.DataAccess;
 namespace Ogrenc.DataAccess.Migrations
 {
     [DbContext(typeof(OgrenciDbContext))]
-    [Migration("20220208093532_newMigration")]
-    partial class newMigration
+    [Migration("20220209111204_db6_2")]
+    partial class db6_2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Ogrenc.Entities.Bolum", b =>
+                {
+                    b.Property<int>("IdBolum")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdBolum"), 1L, 1);
+
+                    b.Property<string>("Ad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IdBolum");
+
+                    b.ToTable("Bolums");
+                });
 
             modelBuilder.Entity("Ogrenc.Entities.Ders", b =>
                 {
@@ -37,11 +55,16 @@ namespace Ogrenc.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("BolumId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Kod")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdDers");
+
+                    b.HasIndex("BolumId");
 
                     b.ToTable("Derss");
                 });
@@ -86,13 +109,34 @@ namespace Ogrenc.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("IdAnadal")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdYanDal")
+                        .HasColumnType("int");
+
                     b.Property<string>("OgrenciNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdOgrenci");
 
+                    b.HasIndex("IdAnadal");
+
+                    b.HasIndex("IdYanDal");
+
                     b.ToTable("Ogrencis");
+                });
+
+            modelBuilder.Entity("Ogrenc.Entities.Ders", b =>
+                {
+                    b.HasOne("Ogrenc.Entities.Bolum", "IdBolum")
+                        .WithMany("BolumDersListesi")
+                        .HasForeignKey("BolumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("IdBolum");
                 });
 
             modelBuilder.Entity("Ogrenc.Entities.DonemDersleri", b =>
@@ -104,6 +148,32 @@ namespace Ogrenc.DataAccess.Migrations
                     b.HasOne("Ogrenc.Entities.Ogrenci", null)
                         .WithMany("DonemDersleris")
                         .HasForeignKey("OgrenciIdOgrenci");
+                });
+
+            modelBuilder.Entity("Ogrenc.Entities.Ogrenci", b =>
+                {
+                    b.HasOne("Ogrenc.Entities.Bolum", "Anadal")
+                        .WithMany("AnadalOgrListesi")
+                        .HasForeignKey("IdAnadal")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ogrenc.Entities.Bolum", "Yandal")
+                        .WithMany("YandalOgrListesi")
+                        .HasForeignKey("IdYanDal");
+
+                    b.Navigation("Anadal");
+
+                    b.Navigation("Yandal");
+                });
+
+            modelBuilder.Entity("Ogrenc.Entities.Bolum", b =>
+                {
+                    b.Navigation("AnadalOgrListesi");
+
+                    b.Navigation("BolumDersListesi");
+
+                    b.Navigation("YandalOgrListesi");
                 });
 
             modelBuilder.Entity("Ogrenc.Entities.Ders", b =>

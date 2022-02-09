@@ -32,6 +32,8 @@ namespace Ogrenc.DataAccess
         public DbSet<Ders> Derss { get; set; }
 
         public DbSet<DonemDersleri> DonemDersleris { get; set; }
+        public DbSet<Bolum> Bolums { get; set; }
+        
 
        
     }

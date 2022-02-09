@@ -9,7 +9,7 @@ namespace Ogrenc.Business.Abstract
 {
     public interface IOgrenciService
     {
-        public List<Ogrenci> getAllOgrencis();
+        public string getAllOgrencis();
         public Ogrenci addOgrenci(Ogrenci ogrenci);
         public void removeOgrenci(Ogrenci ogrenci);
         public Ogrenci getOgrenciById(int id);

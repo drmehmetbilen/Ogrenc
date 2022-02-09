@@ -1,4 +1,5 @@
-﻿using Ogrenc.DataAccess.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using Ogrenc.DataAccess.Abstract;
 using Ogrenc.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Ogrenc.DataAccess.Concrete
         public OgrenciRepository(OgrenciDbContext _db)
         {
             db = _db;
+
         }
 
         public Ogrenci addOgrenci(Ogrenci ogrenci)
@@ -25,8 +27,11 @@ namespace Ogrenc.DataAccess.Concrete
         }
 
         public List<Ogrenci> getAllOgrencis()
+
         {
-            return db.Ogrencis.ToList();
+            var sonuc = db.Ogrencis.Include(s => s.Anadal).Include(s => s.Yandal).Include(s => s.DonemDersleris);
+
+            return sonuc.ToList() ;
         }
 
         public Ogrenci getOgrenciById(int id)

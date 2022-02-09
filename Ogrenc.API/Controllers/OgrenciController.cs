@@ -22,14 +22,14 @@ namespace Ogrenc.API.Controllers
         public IActionResult GetAll()
         {
 
-            var result = service.getAllOgrencis();
+            string result = service.getAllOgrencis();
             if (result != null)
             {
                 return Ok(result);
             }
 
             return NotFound();
-
+                
 
 
         }

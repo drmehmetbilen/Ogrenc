@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ogrenc.Entities
 {
@@ -10,9 +11,11 @@ namespace Ogrenc.Entities
         public string AdSoyad { get; set; }
         public string OgrenciNo { get; set; }
 
+        [ForeignKey("IdAnadal")]
+        public  Bolum Anadal { get; set; }
+
+        [ForeignKey("IdYanDal")]
+        public  Bolum? Yandal { get; set; }
         public virtual List<DonemDersleri>? DonemDersleris { get; set; }
-
-
-
     }
 }

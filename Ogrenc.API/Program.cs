@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Ogrenc.Business.Abstract;
 using Ogrenc.Business.Concrete;
+using Ogrenc.Business.ExtraClassesAbstract;
+using Ogrenc.Business.ExtraClassesConcrete;
 using Ogrenc.DataAccess;
 using Ogrenc.DataAccess.Abstract;
 using Ogrenc.DataAccess.Concrete;
@@ -16,6 +18,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IOgrenciService, OgrenciManager>();
 builder.Services.AddScoped<IOgrenciRepository, OgrenciRepository>();
+
+builder.Services.AddScoped<IFunctions, Functions>();
 
 builder.Services.AddDbContext<OgrenciDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("default")));
@@ -34,3 +38,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

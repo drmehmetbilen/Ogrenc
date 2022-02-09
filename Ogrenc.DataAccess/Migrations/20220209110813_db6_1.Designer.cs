@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ogrenc.DataAccess;
 
@@ -11,9 +12,10 @@ using Ogrenc.DataAccess;
 namespace Ogrenc.DataAccess.Migrations
 {
     [DbContext(typeof(OgrenciDbContext))]
-    partial class OgrenciDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220209110813_db6_1")]
+    partial class db6_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
