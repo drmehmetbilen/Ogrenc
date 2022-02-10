@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IOgrenciService, OgrenciManager>();
 builder.Services.AddScoped<IOgrenciRepository, OgrenciRepository>();
 
-builder.Services.AddScoped<IFunctions, Functions>();
+builder.Services.AddSingleton<IFunctions, Functions>();
 
 builder.Services.AddDbContext<OgrenciDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("default")));
