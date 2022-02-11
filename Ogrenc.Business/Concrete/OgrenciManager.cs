@@ -18,8 +18,6 @@ namespace Ogrenc.Business.Concrete
         public OgrenciManager(IOgrenciRepository _repository, IFunctions _functions)
         {
             repository = _repository;
-
-
             functions = _functions;
             mapper = functions.Mapper();
         }

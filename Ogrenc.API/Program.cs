@@ -6,6 +6,7 @@ using Ogrenc.Business.ExtraClassesConcrete;
 using Ogrenc.DataAccess;
 using Ogrenc.DataAccess.Abstract;
 using Ogrenc.DataAccess.Concrete;
+using Ogrenc.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IOgrenciService, OgrenciManager>();
 builder.Services.AddScoped<IOgrenciRepository, OgrenciRepository>();
+
+builder.Services.AddScoped<IGenericRepository<Bolum>, BolumRepository>();
+builder.Services.AddScoped<IGenericRepository<OgretimElemani>, OgretimElemaniRepository>();
+
 
 builder.Services.AddSingleton<IFunctions, Functions>();
 

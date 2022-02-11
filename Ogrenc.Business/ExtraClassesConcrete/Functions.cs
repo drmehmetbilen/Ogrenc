@@ -39,7 +39,8 @@ namespace Ogrenc.Business.ExtraClassesConcrete
                       .ReverseMap()
                       .ForMember(dest => dest.Yandal, act=>act.Ignore())
                       .ForMember(dest => dest.Anadal, act=>act.Ignore());                      ;
-                      
+                    
+                    
                       
                       
                      
