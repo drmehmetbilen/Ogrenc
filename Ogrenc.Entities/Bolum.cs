@@ -19,11 +19,10 @@ namespace Ogrenc.Entities
         [Required]
         public string Ad { get; set; }
 
-        public virtual ICollection<Ogrenci>? AnaDalOgrencileri { get; set; }
-        public virtual ICollection<Ogrenci>? YanDalOgrencileri { get; set; }
-
-
-
+        public virtual ICollection<Ogrenci>? AnaDalOgrencileris { get; set; }
+        public virtual ICollection<Ogrenci>? YanDalOgrencileris { get; set; }
+        public virtual ICollection<Ders>? BolumDersleris { get; set; }
+        public virtual ICollection<OgretimElemani> BolumOgretimElemanlaris { get; set; }
 
         public Bolum()
         {
@@ -31,5 +30,17 @@ namespace Ogrenc.Entities
             Ad = "";
         }
         
+    }
+
+    public class BolumDTO
+    {
+        public int IdBolum { get; set; }
+        public string Ad { get; set; }
+
+        public int AnaDalOgrenciSayisi { get; set; }
+        public int YanDalOgrenciSayisi { get; set; }
+
+        public int DersSayisi { get; set; }
+        public int OgretimElemaniSayisi { get; set; }
     }
 }

@@ -6,19 +6,7 @@ using Ogrenc.Entities;
 
 namespace Ogrenc.Business.Concrete
 {
-    public class OgrenciDTO
-    {
-        public int IdOgrenci { get; set; }
-        public string AdSoyad { get; set; }
-        public string OgrenciNo { get; set; }
-        public int? AnaDalId { get; set; }
 
-        public int? YanDalId { get; set; }
-
-        public string? AnadalAd { get; set; }
-        public string? YandalAd { get; set; }
-
-    }
 
     public class OgrenciManager : IOgrenciService
     {
@@ -36,13 +24,18 @@ namespace Ogrenc.Business.Concrete
             mapper = functions.Mapper();
         }
 
-        public Ogrenci addOgrenci(OgrenciDTO ogrenci)
+        public OgrenciDTO addOgrenci(OgrenciDTO ogrenci)
         {
 
 
             Ogrenci ogr = new Ogrenci();
-            ogr = mapper.Map(ogrenci,ogr);
-            return repository.addOgrenci(ogr);
+            ogr = mapper.Map(ogrenci,ogr); //map işlemi burada mı yoksa dataaccess katmanında mı yapılması lazım?
+            var result =  repository.addOgrenci(ogr);
+
+
+            var resultDTO = mapper.Map<OgrenciDTO>(result);
+
+            return resultDTO;
 
         }
 

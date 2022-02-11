@@ -12,7 +12,7 @@ namespace Ogrenc.Business.Abstract
     public interface IOgrenciService
     {
         public List<OgrenciDTO> getAllOgrencis();
-        public Ogrenci addOgrenci(OgrenciDTO ogrenci);
+        public OgrenciDTO addOgrenci(OgrenciDTO ogrenci);
         public bool removeOgrenci(int id);
         public OgrenciDTO getOgrenciById(int id);
     }

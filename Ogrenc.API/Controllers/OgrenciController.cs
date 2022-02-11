@@ -50,8 +50,6 @@ namespace Ogrenc.API.Controllers
         public IActionResult Post([FromBody] OgrenciDTO ogrenci)
         {
 
-
-
             var result = service.addOgrenci(ogrenci);
 
             return CreatedAtAction("Get", new { id = result.IdOgrenci }, result);
