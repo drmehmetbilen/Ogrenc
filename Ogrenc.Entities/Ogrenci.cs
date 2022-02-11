@@ -7,15 +7,26 @@ namespace Ogrenc.Entities
     {
         [Key]
         public int IdOgrenci { get; set; }
+
         [StringLength(100)]
+        [Required]
         public string AdSoyad { get; set; }
-        public string OgrenciNo { get; set; }
+        public string? OgrenciNo { get; set; }
 
-        [ForeignKey("IdAnadal")]
-        public  Bolum Anadal { get; set; }
+      
 
-        [ForeignKey("IdYanDal")]
+ 
+        [ForeignKey("AnaDalId")]
+        public int? AnaDalId { get; set; }
+        public  Bolum? Anadal { get; set; }
+
+        [ForeignKey("YanDalId")]
+        public int? YanDalId { get; set; }
         public  Bolum? Yandal { get; set; }
-        public virtual List<DonemDersleri>? DonemDersleris { get; set; }
+
+        public Ogrenci()
+        {
+            AdSoyad = "";
+        }
     }
 }

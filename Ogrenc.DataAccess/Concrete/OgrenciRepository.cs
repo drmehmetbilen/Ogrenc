@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ogrenc.DataAccess.Concrete
 {
+    
     public class OgrenciRepository : IOgrenciRepository
     {
         OgrenciDbContext db;
@@ -20,6 +21,7 @@ namespace Ogrenc.DataAccess.Concrete
 
         public Ogrenci addOgrenci(Ogrenci ogrenci)
         {
+            
             db.Ogrencis.Add(ogrenci);
             db.SaveChanges();
             return ogrenci;
@@ -29,21 +31,32 @@ namespace Ogrenc.DataAccess.Concrete
         public List<Ogrenci> getAllOgrencis()
 
         {
-            var sonuc = db.Ogrencis.Include(s => s.Anadal).Include(s => s.Yandal).Include(s => s.DonemDersleris);
+            var sonuc = db.Ogrencis.Include(s => s.Anadal).Include(s => s.Yandal);
 
             return sonuc.ToList() ;
         }
 
         public Ogrenci getOgrenciById(int id)
         {
-            return db.Ogrencis.Find(id);
+            var result =  db.Ogrencis.Include(s => s.Anadal).Include(s => s.Yandal).Where(s => s.IdOgrenci == id).SingleOrDefault();
+
+            return result;
+
+
 
         }
 
-        public void removeOgrenci(Ogrenci ogrenci)
+        public bool removeOgrenci(int id)
         {
-            db.Ogrencis.Remove(ogrenci);
-            db.SaveChanges();
+            var removeOgrenci = db.Ogrencis.Find(id);
+            if (removeOgrenci!=null)
+            {
+                db.Ogrencis.Remove(removeOgrenci);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+          
 
         }
     }

@@ -19,6 +19,20 @@ namespace Ogrenc.DataAccess
             options = _options;
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Ogrenci>()
+                .HasOne(x=>x.Anadal)
+                .WithMany(y=>y.AnaDalOgrencileri)
+                .HasForeignKey(z=>z.AnaDalId);
+
+            modelBuilder.Entity<Ogrenci>()
+                .HasOne(x => x.Yandal)
+                .WithMany(y => y.YanDalOgrencileri)
+                .HasForeignKey(z => z.YanDalId);
+        }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{ 
         //    base.OnConfiguring(optionsBuilder);
@@ -29,9 +43,6 @@ namespace Ogrenc.DataAccess
 
         //}
         public DbSet<Ogrenci> Ogrencis { get; set; }
-        public DbSet<Ders> Derss { get; set; }
-
-        public DbSet<DonemDersleri> DonemDersleris { get; set; }
         public DbSet<Bolum> Bolums { get; set; }
         
 

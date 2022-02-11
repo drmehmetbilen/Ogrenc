@@ -22,13 +22,13 @@ namespace Ogrenc.API.Controllers
         public IActionResult GetAll()
         {
 
-            string result = service.getAllOgrencis();
-            if (result != null)
+            List<OgrenciDTO> result = service.getAllOgrencis();
+            if (result.Count==0)
             {
-                return Ok(result);
+                 return NotFound();
             }
-
-            return NotFound();
+            return Ok(result);
+           
                 
 
 
@@ -37,7 +37,7 @@ namespace Ogrenc.API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var result = service.getOgrenciById(id);
+            OgrenciDTO result = service.getOgrenciById(id);
             if (result != null)
             {
                 return Ok(result);
@@ -47,17 +47,30 @@ namespace Ogrenc.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Ogrenci ogrenci)
+        public IActionResult Post([FromBody] OgrenciDTO ogrenci)
         {
+
+
+
             var result = service.addOgrenci(ogrenci);
 
             return CreatedAtAction("Get", new { id = result.IdOgrenci }, result);
+
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return NoContent();
+            bool result = service.removeOgrenci(id);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+            
 
         }
 

@@ -8,20 +8,28 @@ using System.Threading.Tasks;
 
 namespace Ogrenc.Entities
 {
+    
     public class Bolum
     {
         [Key]
         public int IdBolum { get; set; }
+
+
         [StringLength(50)]
+        [Required]
         public string Ad { get; set; }
 
-        
-        [InverseProperty("Anadal")]
-        public  List<Ogrenci>? AnadalOgrListesi { get; set; }
-        [InverseProperty("Yandal")]
-        public  List<Ogrenci>? YandalOgrListesi { get; set; }
-        //[InverseProperty("BolumDers")]
-        public virtual List<Ders> BolumDersListesi { get; set; }
+        public virtual ICollection<Ogrenci>? AnaDalOgrencileri { get; set; }
+        public virtual ICollection<Ogrenci>? YanDalOgrencileri { get; set; }
 
+
+
+
+        public Bolum()
+        {
+
+            Ad = "";
+        }
+        
     }
 }

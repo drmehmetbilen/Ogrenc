@@ -1,4 +1,5 @@
-﻿using Ogrenc.Entities;
+﻿using Ogrenc.Business.Concrete;
+using Ogrenc.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Ogrenc.Business.Abstract
 {
+    
     public interface IOgrenciService
     {
-        public string getAllOgrencis();
-        public Ogrenci addOgrenci(Ogrenci ogrenci);
-        public void removeOgrenci(Ogrenci ogrenci);
-        public Ogrenci getOgrenciById(int id);
+        public List<OgrenciDTO> getAllOgrencis();
+        public Ogrenci addOgrenci(OgrenciDTO ogrenci);
+        public bool removeOgrenci(int id);
+        public OgrenciDTO getOgrenciById(int id);
     }
 }

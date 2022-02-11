@@ -11,7 +11,7 @@ namespace Ogrenc.DataAccess.Abstract
     {
         public List<Ogrenci> getAllOgrencis();
         public Ogrenci addOgrenci(Ogrenci ogrenci);
-        public void removeOgrenci(Ogrenci ogrenci);
+        public bool removeOgrenci(int id);
         public Ogrenci getOgrenciById(int id);
     }
 }
