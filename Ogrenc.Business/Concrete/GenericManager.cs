@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ogrenc.Business.Concrete
 {
-    public class GenericManager<Target, TargetDTO> : Abstract.IGenericService<Target, TargetDTO> where Target : class where TargetDTO : class
+    public class GenericManager<Target,TargetDTO> : Abstract.IGenericService<TargetDTO> where TargetDTO : class, new() where Target : class, new()
     {
         IGenericRepository<Target> repository;
         IFunctions functions;
@@ -22,26 +22,34 @@ namespace Ogrenc.Business.Concrete
             functions = _functions;
             mapper = functions.Mapper();
         }
-        
 
-        public TargetDTO addOgrenci(TargetDTO ogrenci)
+        public TargetDTO add(TargetDTO record)
         {
-            throw new NotImplementedException();
+
+            Target newRecord = new Target();
+            newRecord = mapper.Map(record, newRecord);
+            var AddedRecord =  repository.addOne(newRecord);
+            var recordDTO = mapper.Map<TargetDTO>(AddedRecord);
+            return recordDTO;
+            
         }
 
-        public List<TargetDTO> getAllOgrencis()
+        public List<TargetDTO> getAll()
         {
-            throw new NotImplementedException();
+            var result = repository.getAll().Select(s => mapper.Map<TargetDTO>(s)).ToList();
+            return result;  
+            
         }
 
-        public TargetDTO getOgrenciById(int id)
+        public TargetDTO getByID(int id)
         {
-            throw new NotImplementedException();
+            var result = repository.getById(id);
+            return mapper.Map<TargetDTO>(result);
         }
 
-        public bool removeOgrenci(int id)
+        public bool remove(int id)
         {
-            throw new NotImplementedException();
+            return repository.removeOne(id);
         }
     }
 }

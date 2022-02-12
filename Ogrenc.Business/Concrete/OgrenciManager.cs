@@ -27,7 +27,7 @@ namespace Ogrenc.Business.Concrete
 
 
             Ogrenci ogr = new Ogrenci();
-            ogr = mapper.Map(ogrenci,ogr); //map işlemi burada mı yoksa dataaccess katmanında mı yapılması lazım?
+            ogr = mapper.Map(ogrenci,ogr); 
             var result =  repository.addOgrenci(ogr);
 
 

@@ -33,7 +33,7 @@ namespace Ogrenc.DataAccess.Concrete
         {
             var sonuc = db.Ogrencis.Include(s => s.Anadal).Include(s => s.Yandal);
 
-            return sonuc.ToList() ;
+            return sonuc.ToList();
         }
 
         public Ogrenci getOgrenciById(int id)

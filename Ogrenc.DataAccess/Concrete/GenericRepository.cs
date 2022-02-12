@@ -24,18 +24,20 @@ namespace Ogrenc.DataAccess.Concrete
         {
             genericTable.Add(record);
             db.SaveChanges();
+            
             return record;
 
         }
 
         public List<Target> getAll()
         {
-            return genericTable.ToList();
+            var result = genericTable.ToList();
+            return result;
         }
 
         public Target getById(int id)
         {
-            var result = genericTable.Find(id);
+            var result = genericTable.Find(id); //override etmeden include etme????
             return result;
 
         }

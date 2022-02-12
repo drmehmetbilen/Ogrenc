@@ -38,17 +38,28 @@ namespace Ogrenc.Business.ExtraClassesConcrete
                       
                       .ReverseMap()
                       .ForMember(dest => dest.Yandal, act=>act.Ignore())
-                      .ForMember(dest => dest.Anadal, act=>act.Ignore());                      ;
-                    
-                    
-                      
-                      
-                     
-                     
-                      
-                 }
+                      .ForMember(dest => dest.Anadal, act=>act.Ignore());                      
 
-                 
+
+                    cfg.CreateMap<Bolum, BolumDTO>()
+                  .ForMember(dest => dest.AnaDalOgrenciSayisi, act => act.MapFrom(src => src.AnaDalOgrencileris != null ? src.AnaDalOgrencileris.Count() : 0))
+                  .ForMember(dest => dest.YanDalOgrenciSayisi, act => act.MapFrom(src => src.YanDalOgrencileris != null ? src.YanDalOgrencileris.Count() : 0))
+                  .ForMember(dest => dest.DersSayisi, act => act.MapFrom(src => src.BolumDersleris != null ? src.BolumDersleris.Count() : 0))
+                  .ForMember(dest => dest.OgretimElemaniSayisi, act => act.MapFrom(src => src.BolumOgretimElemanlaris != null ? src.BolumOgretimElemanlaris.Count() : 0))
+                  .ReverseMap()
+                  .ForMember(dest => dest.AnaDalOgrencileris, act => act.Ignore())
+                  .ForMember(dest => dest.YanDalOgrencileris, act => act.Ignore())
+                  .ForMember(dest => dest.BolumDersleris, act => act.Ignore())
+                  .ForMember(dest => dest.BolumOgretimElemanlaris, act => act.Ignore());
+
+
+
+
+
+
+                }
+
+
 
                 );
 

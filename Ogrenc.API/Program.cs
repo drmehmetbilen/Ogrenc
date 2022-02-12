@@ -21,6 +21,15 @@ builder.Services.AddScoped<IOgrenciService, OgrenciManager>();
 builder.Services.AddScoped<IOgrenciRepository, OgrenciRepository>();
 
 builder.Services.AddScoped<IGenericRepository<Bolum>, BolumRepository>();
+builder.Services.AddScoped<IGenericRepository<Ders>, DersRepository>();
+builder.Services.AddScoped<IGenericRepository<OgretimElemani>, OgretimElemaniRepository>();
+builder.Services.AddScoped<IGenericRepository<OgretimElemani>, OgretimElemaniRepository>();
+
+builder.Services.AddScoped<IGenericService<BolumDTO>,BolumManager>();
+
+
+
+
 builder.Services.AddScoped<IGenericRepository<OgretimElemani>, OgretimElemaniRepository>();
 
 
