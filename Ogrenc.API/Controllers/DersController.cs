@@ -8,11 +8,10 @@ namespace Ogrenc.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    public class OgrenciController : ControllerBaseGeneric<OgrenciDTO>
+    public class DersController : ControllerBaseGeneric<DersDTO>
     {
-        IGenericService<OgrenciDTO> service;
-        public OgrenciController(IGenericService<OgrenciDTO> _service) : base(_service)
+        IGenericService<DersDTO> service;
+        public DersController(IGenericService<DersDTO> _service) : base(_service)
         {
             service = _service;
         }

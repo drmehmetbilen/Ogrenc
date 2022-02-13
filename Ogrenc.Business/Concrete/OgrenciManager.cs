@@ -1,63 +1,23 @@
-﻿using AutoMapper;
-using Ogrenc.Business.Abstract;
-using Ogrenc.Business.ExtraClassesAbstract;
+﻿using Ogrenc.Business.ExtraClassesAbstract;
 using Ogrenc.DataAccess.Abstract;
 using Ogrenc.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Ogrenc.Business.Concrete
 {
-
-
-    public class OgrenciManager : IOgrenciService
+    public class OgrenciManager : GenericManager<Ogrenci, OgrenciDTO>
     {
-        IOgrenciRepository repository;
+        IGenericRepository<Ogrenci> repository;
         IFunctions functions;
-
-        Mapper mapper;
-
-        public OgrenciManager(IOgrenciRepository _repository, IFunctions _functions)
+        public OgrenciManager(IGenericRepository<Ogrenci> _repository, IFunctions _functions) : base(_repository, _functions)
         {
             repository = _repository;
             functions = _functions;
-            mapper = functions.Mapper();
-        }
 
-        public OgrenciDTO addOgrenci(OgrenciDTO ogrenci)
-        {
-
-
-            Ogrenci ogr = new Ogrenci();
-            ogr = mapper.Map(ogrenci,ogr); 
-            var result =  repository.addOgrenci(ogr);
-
-
-            var resultDTO = mapper.Map<OgrenciDTO>(result);
-
-            return resultDTO;
-
-        }
-
-        public List<OgrenciDTO> getAllOgrencis()
-        {
-
-
-            var resultDTO = repository.getAllOgrencis().Select(S => mapper.Map<OgrenciDTO>(S)).ToList();
-            return resultDTO;
-        }
-
-        public OgrenciDTO getOgrenciById(int id)
-        {
-            var result = repository.getOgrenciById(id);
-            OgrenciDTO resultDTO = mapper.Map<OgrenciDTO>(result);
-            return resultDTO;
-
-        }
-
-        public bool removeOgrenci(int id)
-        {
-           return  repository.removeOgrenci(id);
-
-           
         }
     }
 }

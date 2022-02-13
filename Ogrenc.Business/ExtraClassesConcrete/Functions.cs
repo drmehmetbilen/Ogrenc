@@ -37,6 +37,8 @@ namespace Ogrenc.Business.ExtraClassesConcrete
                       .ForMember(dest => dest.AnadalAd, act => act.MapFrom(src => src.Anadal != null ? src.Anadal.Ad : "YOK"))
                       
                       .ReverseMap()
+                      .ForMember(dest=>dest.AnaDalId, act=>act.MapFrom(src=>src.AnaDalId!=0?src.AnaDalId:null))
+                      .ForMember(dest => dest.YanDalId, act => act.MapFrom(src => src.YanDalId != 0 ? src.YanDalId : null))
                       .ForMember(dest => dest.Yandal, act=>act.Ignore())
                       .ForMember(dest => dest.Anadal, act=>act.Ignore());                      
 
@@ -52,16 +54,24 @@ namespace Ogrenc.Business.ExtraClassesConcrete
                   .ForMember(dest => dest.BolumDersleris, act => act.Ignore())
                   .ForMember(dest => dest.BolumOgretimElemanlaris, act => act.Ignore());
 
+                    cfg.CreateMap<Ders, DersDTO>()
+                    .ReverseMap()
+                    .ForMember(dest=>dest.IdBolum, act=>act.MapFrom(s=>s.IdBolum!=0?s.IdBolum:null))
+                    .ForMember(dest => dest.IdOgretimElemani, act => act.MapFrom(s => s.IdOgretimElemani != 0 ? s.IdOgretimElemani : null))
+                    .ForMember(dest => dest.Bolum, act => act.Ignore())
+                    .ForMember(dest => dest.OgretimElemani, act => act.Ignore());
+
+                    cfg.CreateMap<OgretimElemani, OgretimElemaniDTO>()
+                    .ReverseMap()
+                    .ForMember(dest => dest.idBolum, act => act.MapFrom(s => s.idBolum != 0 ? s.idBolum : null))
+                    .ForMember(dest => dest.Bolum, act => act.Ignore());
 
 
 
 
 
-                }
 
-
-
-                );
+                });
 
             mapper = new Mapper(mapConfig);
 

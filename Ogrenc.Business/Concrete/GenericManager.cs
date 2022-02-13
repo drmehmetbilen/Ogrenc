@@ -34,9 +34,12 @@ namespace Ogrenc.Business.Concrete
             
         }
 
-        public List<TargetDTO> getAll()
+        public List<TargetDTO> getAll(bool load = false)
         {
-            var result = repository.getAll().Select(s => mapper.Map<TargetDTO>(s)).ToList();
+
+            
+
+            var result = repository.getAll(load).Select(s => mapper.Map<TargetDTO>(s)).ToList();
             return result;  
             
         }
@@ -50,6 +53,15 @@ namespace Ogrenc.Business.Concrete
         public bool remove(int id)
         {
             return repository.removeOne(id);
+        }
+
+        public bool update(int id, TargetDTO record)
+        {
+            
+            var recordOriginal = mapper.Map<TargetDTO, Target>(record);
+            
+            return repository.update(recordOriginal);
+
         }
     }
 }

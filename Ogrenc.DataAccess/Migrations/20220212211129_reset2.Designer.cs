@@ -11,9 +11,9 @@ using Ogrenc.DataAccess;
 
 namespace Ogrenc.DataAccess.Migrations
 {
-    [DbContext(typeof(OgrenciDbContext))]
-    [Migration("20220211095453_reset")]
-    partial class reset
+    [DbContext(typeof(SchoolDbContext))]
+    [Migration("20220212211129_reset2")]
+    partial class reset2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,33 +26,34 @@ namespace Ogrenc.DataAccess.Migrations
 
             modelBuilder.Entity("Ogrenc.Entities.Bolum", b =>
                 {
-                    b.Property<int>("IdBolum")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdBolum"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Ad")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("IdBolum");
+                    b.HasKey("Id");
 
                     b.ToTable("Bolums");
                 });
 
             modelBuilder.Entity("Ogrenc.Entities.Ders", b =>
                 {
-                    b.Property<int>("IdDers")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDers"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Ad")
+                    b.Property<string>("Ad")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("IdBolum")
                         .HasColumnType("int");
@@ -66,7 +67,7 @@ namespace Ogrenc.DataAccess.Migrations
                     b.Property<int>("Saat")
                         .HasColumnType("int");
 
-                    b.HasKey("IdDers");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdBolum");
 
@@ -77,11 +78,11 @@ namespace Ogrenc.DataAccess.Migrations
 
             modelBuilder.Entity("Ogrenc.Entities.Ogrenci", b =>
                 {
-                    b.Property<int>("IdOgrenci")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdOgrenci"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AdSoyad")
                         .IsRequired()
@@ -97,7 +98,7 @@ namespace Ogrenc.DataAccess.Migrations
                     b.Property<int?>("YanDalId")
                         .HasColumnType("int");
 
-                    b.HasKey("IdOgrenci");
+                    b.HasKey("Id");
 
                     b.HasIndex("AnaDalId");
 
@@ -108,11 +109,11 @@ namespace Ogrenc.DataAccess.Migrations
 
             modelBuilder.Entity("Ogrenc.Entities.OgretimElemani", b =>
                 {
-                    b.Property<int>("IdOgretimElemani")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdOgretimElemani"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AdSoyad")
                         .IsRequired()
@@ -127,7 +128,7 @@ namespace Ogrenc.DataAccess.Migrations
                     b.Property<int>("idBolum")
                         .HasColumnType("int");
 
-                    b.HasKey("IdOgretimElemani");
+                    b.HasKey("Id");
 
                     b.HasIndex("idBolum");
 

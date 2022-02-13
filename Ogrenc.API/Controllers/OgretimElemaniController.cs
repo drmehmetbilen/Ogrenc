@@ -8,11 +8,11 @@ namespace Ogrenc.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    public class OgrenciController : ControllerBaseGeneric<OgrenciDTO>
+   
+    public class OgretimElemaniController : ControllerBaseGeneric<OgretimElemaniDTO>
     {
-        IGenericService<OgrenciDTO> service;
-        public OgrenciController(IGenericService<OgrenciDTO> _service) : base(_service)
+        IGenericService<OgretimElemaniDTO> service;
+        public OgretimElemaniController(IGenericService<OgretimElemaniDTO> _service) : base(_service)
         {
             service = _service;
         }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ogrenc.DataAccess;
 
@@ -11,9 +12,10 @@ using Ogrenc.DataAccess;
 namespace Ogrenc.DataAccess.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
-    partial class OgrenciDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220212203356_reset")]
+    partial class reset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,10 +50,9 @@ namespace Ogrenc.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Ad")
-                        .IsRequired()
+                    b.Property<int>("Ad")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("int");
 
                     b.Property<int?>("IdBolum")
                         .HasColumnType("int");
@@ -123,7 +124,7 @@ namespace Ogrenc.DataAccess.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<int?>("idBolum")
+                    b.Property<int>("idBolum")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -167,7 +168,9 @@ namespace Ogrenc.DataAccess.Migrations
                 {
                     b.HasOne("Ogrenc.Entities.Bolum", "Bolum")
                         .WithMany("BolumOgretimElemanlaris")
-                        .HasForeignKey("idBolum");
+                        .HasForeignKey("idBolum")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Bolum");
                 });

@@ -17,25 +17,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IOgrenciService, OgrenciManager>();
-builder.Services.AddScoped<IOgrenciRepository, OgrenciRepository>();
+
 
 builder.Services.AddScoped<IGenericRepository<Bolum>, BolumRepository>();
 builder.Services.AddScoped<IGenericRepository<Ders>, DersRepository>();
 builder.Services.AddScoped<IGenericRepository<OgretimElemani>, OgretimElemaniRepository>();
-builder.Services.AddScoped<IGenericRepository<OgretimElemani>, OgretimElemaniRepository>();
+builder.Services.AddScoped<IGenericRepository<Ogrenci>, OgrenciRepository>();
+
+
 
 builder.Services.AddScoped<IGenericService<BolumDTO>,BolumManager>();
+builder.Services.AddScoped<IGenericService<DersDTO>, DersManager>();
+builder.Services.AddScoped<IGenericService<OgrenciDTO>, OgrenciManager>();
+builder.Services.AddScoped<IGenericService<OgretimElemaniDTO>, OgretimElemaniManager>();
 
 
-
-
-builder.Services.AddScoped<IGenericRepository<OgretimElemani>, OgretimElemaniRepository>();
 
 
 builder.Services.AddSingleton<IFunctions, Functions>();
 
-builder.Services.AddDbContext<OgrenciDbContext>(options => 
+builder.Services.AddDbContext<SchoolDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("default")));
 
 var app = builder.Build();

@@ -9,8 +9,8 @@ namespace Ogrenc.DataAccess.Concrete
 {
     public class OgretimElemaniRepository : GenericRepository<OgretimElemani>
     {
-        public OgrenciDbContext db;
-        public OgretimElemaniRepository(OgrenciDbContext _db) : base(_db)
+        public SchoolDbContext db;
+        public OgretimElemaniRepository(SchoolDbContext _db) : base(_db)
         {
             db = _db;
         }

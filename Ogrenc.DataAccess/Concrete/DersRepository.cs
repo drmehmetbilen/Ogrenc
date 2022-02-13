@@ -10,8 +10,8 @@ namespace Ogrenc.DataAccess.Concrete
 {
     public class DersRepository : GenericRepository<Ders>
     {
-        OgrenciDbContext db;
-        public DersRepository(OgrenciDbContext _db) : base(_db)
+        SchoolDbContext db;
+        public DersRepository(SchoolDbContext _db) : base(_db)
         {
             db = _db;
         }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Ogrenc.Entities
 {
-    public class OgretimElemani
+    public class OgretimElemani : IEntityWithId
     {
         [Key]
-        public int IdOgretimElemani { get; set; }
+        public int Id { get; set; }
         [StringLength(100)]
         [Required]
         public string AdSoyad { get; set; }
@@ -21,9 +21,9 @@ namespace Ogrenc.Entities
         public string SicilNo { get; set; }
 
         [ForeignKey("idBolum")]
-        public int idBolum { get; set; }
+        public int? idBolum { get; set; }
 
-        public Bolum Bolum { get; set; }
+        public Bolum? Bolum { get; set; }
 
         public virtual List<Ders> DersVerilen { get; set; }
         public OgretimElemani()
@@ -32,14 +32,15 @@ namespace Ogrenc.Entities
         }
     }
 
-    public class OgretimElemaniDTO
+    public class OgretimElemaniDTO : IEntityWithId
     {
-        public int IdOgretimElemani { get; set; }
+        public int Id { get; set; }
         public string AdSoyad { get; set; }
         public string SicilNo { get; set; }
 
         public int? idBolum { get; set; }
         public string? BolumAd { get; set; }
+
 
 
     }

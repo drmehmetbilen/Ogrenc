@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Ogrenc.Entities
 {
-    public class Ders
+    public class Ders : IEntityWithId
     {
         [Key]
-        public int IdDers { get; set; }
+        public int Id { get; set; }
 
         [StringLength(50)]
-        public int Ad { get; set; }
+        public string Ad { get; set; }
 
         public int Kredi { get; set; }
         public int Saat { get; set; }
@@ -32,9 +32,21 @@ namespace Ogrenc.Entities
 
     }
 
-    public class DersDTO
+    public class DersDTO : IEntityWithId
     {
-        public int IdDers { get; set; }
+        public int Id { get; set; }
+        public string Ad { get; set; }
+
+        public int? IdOgretimElemani { get; set; }
+        public int? IdBolum { get; set; }
+
+        public string? OgretimElemaniAdSoyad { get; set; }
+        public string? BolumAd { get; set; }
+
+
+        //public int? IdBolum { get; set; }
+        //public int? IdOgretimElemani { get; set; }
+        //public string? OgretimElemaniAd { get; set; }
 
     }
 }

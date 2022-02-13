@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ogrenc.Entities
 {
-    public class Ogrenci
+    public class Ogrenci : IEntityWithId
     {
         [Key]
-        public int IdOgrenci { get; set; }
+        public int Id { get; set; }
 
         [StringLength(100)]
         [Required]
@@ -32,9 +32,10 @@ namespace Ogrenc.Entities
         }
     }
 
-    public class OgrenciDTO
+    public class OgrenciDTO : IEntityWithId
     {
-        public int IdOgrenci { get; set; }
+    
+        public int Id { get; set; }
         public string AdSoyad { get; set; }
         public string OgrenciNo { get; set; }
         public int? AnaDalId { get; set; }

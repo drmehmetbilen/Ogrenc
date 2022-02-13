@@ -10,17 +10,19 @@ using System.Threading.Tasks;
 
 namespace Ogrenc.DataAccess
 {
-    public class OgrenciDbContext : DbContext
+    public class SchoolDbContext : DbContext
     {
         DbContextOptions options;
 
-        public OgrenciDbContext(DbContextOptions _options) : base(_options)
+        public SchoolDbContext(DbContextOptions _options) : base(_options)
         {
             options = _options;
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
 
             modelBuilder.Entity<Ogrenci>()
                 .HasOne(x => x.Anadal)

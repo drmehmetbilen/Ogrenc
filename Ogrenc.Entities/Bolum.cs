@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace Ogrenc.Entities
 {
     
-    public class Bolum
+    public class Bolum : IEntityWithId
     {
         [Key]
-        public int IdBolum { get; set; }
+        public int Id { get; set; }
 
 
         [StringLength(50)]
@@ -32,9 +32,9 @@ namespace Ogrenc.Entities
         
     }
 
-    public class BolumDTO
+    public class BolumDTO : IEntityWithId 
     {
-        public int IdBolum { get; set; }
+        public int Id { get; set; }
         public string Ad { get; set; }
 
         public int AnaDalOgrenciSayisi { get; set; }

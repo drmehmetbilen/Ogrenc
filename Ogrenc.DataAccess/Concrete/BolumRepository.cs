@@ -1,4 +1,5 @@
-﻿using Ogrenc.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Ogrenc.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace Ogrenc.DataAccess.Concrete
 {
     public class BolumRepository : GenericRepository<Bolum>
     {
-        public OgrenciDbContext db;
-        public BolumRepository(OgrenciDbContext _db) : base(_db)
+        public SchoolDbContext db;
+        public BolumRepository(SchoolDbContext _db) : base(_db)
         {
             db = _db;
         }
 
+        
     }
 }
