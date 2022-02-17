@@ -13,7 +13,7 @@ namespace Ogrenc.Business.Concrete
     public class OgretimElemaniManager : GenericManager<OgretimElemani, OgretimElemaniDTO>
     {
         IGenericRepository<OgretimElemani> repository;
-        IFunctions functions;
+        IFunctions functions;// generic yapıda bu tanımlamaları protected yaparsan heryerde yapman gerekmez. zaten taşıyorsun.
         public OgretimElemaniManager(IGenericRepository<OgretimElemani> _repository, IFunctions _functions) : base(_repository, _functions)
         {
             this.repository = _repository;
