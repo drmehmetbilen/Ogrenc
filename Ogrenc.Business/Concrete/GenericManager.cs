@@ -37,9 +37,14 @@ namespace Ogrenc.Business.Concrete
         public List<TargetDTO> getAll(bool load = false)
         {
 
-            
 
             var result = repository.getAll(load).Select(s => mapper.Map<TargetDTO>(s)).ToList();
+            // base sınıfta tolist yapmak tehlikeli olabilir. dikkatli olmak lazım
+            
+            // burada   
+            // var result = repository.getAll(load);
+            // var lastresult=   mapper.Map<List<TargetDTO>>(result).ToList();
+            //biçiminde list olarak mapleme yapabilirsin
             return result;  
             
         }
